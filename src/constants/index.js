@@ -18,6 +18,7 @@ import {
         "A17 Pro chip.",
         "Incredibly powerful",
         "A monster for gaming.",
+
       ],
       video: highlightFirstVideo,
       videoDuration: 4,
