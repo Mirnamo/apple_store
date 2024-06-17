@@ -7,7 +7,6 @@ import { useEffect, useRef, useState } from "react";
 import { hightlightsSlides } from "../constants";
 import { pauseImg, playImg, replayImg } from "../utils";
 
-
 const VideoCarousel = () => {
     const videoRef = useRef([]);
     const videoSpanRef = useRef([]);
@@ -25,12 +24,30 @@ const VideoCarousel = () => {
 
     const {isEnd, isLastVideo, startPlay, videoId, isPlaying} = video;
 
+    useGSAP(()=>{
+         gsap.to('#video', {
+          scrollTrigger: {
+            trigger: '#video',
+            toggleActions: 'restart none none none'
+          },
+          onComplete: ()=>{
+            setVideo((pre)=>({
+              ...pre,
+              startPlay: true,
+              isPlaying: true,
+            }))
+          }
+         })
+    },[isEnd, videoId]);
+
+
     useEffect(()=>{
         const currentState = 0;
         let span = videoSpanRef.current;
  
         if(span[videoId]){
-         let animation = gsap.to(span[videoId], {onUpdate: ()=> {
+         let animation = gsap.to(span[videoId], {
+          onUpdate: ()=> {
  
          }, onComplete: ()=>{
  
@@ -40,7 +57,34 @@ const VideoCarousel = () => {
         }
      }, [videoId, startPlay]);
 
-    useEffect(()=>{
+     const handleProcess = (type, i) => {
+      switch (type) {
+        case "video-end":
+          setVideo((pre) => ({ ...pre, isEnd: true, videoId: i + 1 }));
+          break;
+  
+        case "video-last":
+          setVideo((pre) => ({ ...pre, isLastVideo: true }));
+          break;
+  
+        case "video-reset":
+          setVideo((pre) => ({ ...pre, videoId: 0, isLastVideo: false }));
+          break;
+  
+        case "pause":
+          setVideo((pre) => ({ ...pre, isPlaying: !pre.isPlaying }));
+          break;
+  
+        case "play":
+          setVideo((pre) => ({ ...pre, isPlaying: !pre.isPlaying }));
+          break;
+  
+        default:
+          return video;
+      }
+    };
+
+     useEffect(()=>{
       if(loadedData.length > 3){
         if(!isPlaying){
             videoRef.current[videoId].pause();
@@ -60,7 +104,8 @@ const VideoCarousel = () => {
             <div className="video-carousel_countainer">
             <div className="w-full h-full flex-center rounded-3x1 overflow-hidden bg-black">
                 <video id="video" playsInline={true} muted preload='auto' ref={(element) => (videoRef.current[i] = element)} 
-                onPlay={()=>{setVideo((prevVideo) => ({...prevVideo, isPlaying:true}))}}>
+                onPlay={()=>{setVideo((prevVideo) => ({...prevVideo, isPlaying:true}))}}
+                onLoadedMetadata={(element)=>handleProcess(i, element)}>
 
                     <source src={list.video} type="video'mp4"/>
                 </video>

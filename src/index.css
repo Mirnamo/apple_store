@@ -16,7 +16,7 @@ body {
   /* background: #000; */
   background: black;
   border-color: #3b3b3b;
-  user-select: none;
+  -webkit-user-select: none;
 }
 
 canvas {
