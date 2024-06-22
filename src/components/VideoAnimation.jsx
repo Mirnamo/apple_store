@@ -11,19 +11,19 @@ const VideoAnimation = () => {
     gsap.from('#chip', {
       scrollTrigger: {
         trigger: '#chip',
-        start: '20% bottom'
+        start: '20% bottom',
       },
       opacity: 0,
       scale: 2,
       duration: 2,
-      ease: 'power2.inOut'
+      ease: 'power2.inOut',
     })
 
     animateWithGsap('.g_fadeIn', {
       opacity: 1,
       y: 0,
       duration: 1,
-      ease: 'power2.inOut'
+      ease: 'power2.inOut',
     })
   }, []);
 
@@ -54,8 +54,8 @@ const VideoAnimation = () => {
                 className="bg-transparent relative z-10"
               />
             </div>
-            <div className="hiw-video">
-                <video className="pointer-events-none" playsInline preload="none" muted autoPlay ref={videoRef}>
+            <div id="anim" className="hiw-video">
+                <video className="pointer-events-none h-full w-full" playsInline preload="none" muted autoPlay ref={videoRef} loop> 
                   <source src={frameVideo} type="video/mp4" />
                 </video>
               </div>
@@ -89,6 +89,7 @@ const VideoAnimation = () => {
               </div>
               </div>
             </div>
+          
     </section>
   )
 }

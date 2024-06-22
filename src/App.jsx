@@ -17,8 +17,8 @@ import VideoAnimation from './components/VideoAnimation';
        <Highlights />
        <Model />
        <Features/>
-       <Footer/>
        <VideoAnimation/>
+       <Footer/>
     </main>
   )
 }
