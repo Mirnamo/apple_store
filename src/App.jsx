@@ -12,7 +12,7 @@ import VideoAnimation from './components/VideoAnimation';
        <Navbar />
        <Hero />
        <Highlights />
-       <Model />
+       {/* <Model /> */}
        <Features/>
        <VideoAnimation/>
        <Footer/>
