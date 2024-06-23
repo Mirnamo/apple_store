@@ -11,7 +11,7 @@ import React, { useEffect, useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 
 function Model(props) {
-  const { nodes, materials } = useGLTF("/models/scene.glb");
+  const { nodes, materials } = useGLTF("https://fantastic-squirrel-25f608.netlify.app/models/scene.glb");
 
   const texture = useTexture(props.item.img);
 
