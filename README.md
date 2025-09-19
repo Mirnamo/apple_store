@@ -52,13 +52,13 @@ cd apple_store
 # install dependencies
 
 npm install
-# or
+or
 yarn install
 
 # To run the porject
 
 npm run dev
-# or
+or
 yarn dev
 
 ### Build for production:
