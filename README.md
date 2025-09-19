@@ -9,9 +9,9 @@
 - [Features](#features)  
 - [Tech Stack](#tech-stack)  
 - [Getting Started](#getting-started)  
-- [Project Structure](#project-structure)   
-- [Contributing](#contributing)
-- [Configurator & Setup](#configurator--setup)   
+- [Project Structure](#project-structure)
+- [Configurator & Setup](#configurator--setup) 
+- [Contributing](#contributing) 
 - [License](#license)
 
 ---
